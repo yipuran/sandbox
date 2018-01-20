@@ -5,5 +5,5 @@
 
     test
 
-[AboutMe](/doc/samplee.md)
+[Sample](/doc/samplee.md)
 
