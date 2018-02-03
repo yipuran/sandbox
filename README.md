@@ -7,4 +7,4 @@
 
 [Sample](/doc/sample.md)
 
-[include](File:test.md)
+[include](File:include/test.md)
