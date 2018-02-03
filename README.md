@@ -7,3 +7,8 @@
 
 [Sample](/doc/sample.md)
 
+[include](/include/test.md)
+
+
+[a relative link](/include/test.md)
+
