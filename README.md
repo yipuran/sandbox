@@ -7,4 +7,8 @@
 
 [Sample](/doc/sample.md)
 
-[include](File:include/test.md)
+[include](/include/test.md)
+
+
+[a relative link](/include/test.md)
+
