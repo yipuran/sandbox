@@ -12,3 +12,5 @@
 
 [a relative link](/include/test.md)
 
+## License
+MIT
