@@ -11,6 +11,8 @@
 
 https://github.com/yipuran/sandbox/wiki
 
+[Wikiページ](../../wiki)
+
 [a relative link](/include/test.md)
 
 ## License
