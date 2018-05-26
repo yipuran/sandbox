@@ -9,6 +9,7 @@
 
 [include](/include/test.md)
 
+[Ｗｉｋｉページへ](../wiki)
 
 [a relative link](/include/test.md)
 
