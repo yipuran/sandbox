@@ -27,7 +27,7 @@ import java.util.function.Function;
  *       List&lt;User&gt; list;
  *       // list に格納
  *       list.stream().sorted((a, b)-&gt;Integer.valueOf(b.point).compareTo(Integer.valueOf(a.point)))
- *       .collect(()-&gt;new ArrayList<User&gt;(), RankAccumulator.seek(t-&gt;t.point, (t, u)-&gt;t.rank=u), (r, u)-&gt;{});
+ *       .collect(()-&gt;new ArrayList&lt;User&gt;(), RankAccumulator.seek(t-&gt;t.point, (t, u)-&gt;t.rank=u), (r, u)-&gt;{});
  *
  *    スキップ順位付け（値降順）の場合、、
  *       List&lt;User&gt; list;
