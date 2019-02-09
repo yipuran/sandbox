@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.yipuran.util.rank.RankAccumulator;
 
-//import org.yipuran.rank.RankAccumulator;
 
 /**
  * RankTest1
