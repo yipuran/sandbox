@@ -107,7 +107,6 @@ public final class FileTool {
 		}
 	}
 
-
 	public static void write(String text, String path) throws IOException{
 		try(OutputStream out = new FileOutputStream(path)){
 			out.write(text.getBytes());
