@@ -22,6 +22,10 @@
       <id>yipuran-gsonhelper</id>
       <url>https://raw.github.com/yipuran/yipuran-gsonhelper/mvn-repo</url>
    </repository>
+   <repository>
+      <id>yipuran-mybatis</id>
+      <url>https://raw.github.com/yipuran/yipuran-mybatis/mvn-repo</url>
+   </repository>
 </repositories>
 
 <distributionManagement>
@@ -42,6 +46,11 @@
       <groupId>org.yipuran.gsonhelper</groupId>
       <artifactId>yipuran-gsonhelper</artifactId>
       <version>4.4</version>
+   </dependency>
+   <dependency>
+      <groupId>org.yipuran.mybatis</groupId>
+      <artifactId>yipuran-mybatis</artifactId>
+      <version>4.0</version>
    </dependency>
 
    <dependency>
