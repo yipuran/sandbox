@@ -8,6 +8,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.handler.TextRequestHandler;
 
 import com.google.gson.Gson;
@@ -16,33 +17,42 @@ import com.google.gson.GsonBuilder;
 /**
  * Twitter Boostrap Typeahead TextField.
  */
-public abstract class AjaxTypeahead<T extends Typeahead> extends TextField<T>{
+public abstract class AjaxTypeahead<T extends Typeahead> extends TextField<String>{
 	private AbstractDefaultAjaxBehavior queryAjaxBehavior;
+	private List<Typeahead> choicelist;
 
-	public AjaxTypeahead(String id, IModel<T> model){
+	public AjaxTypeahead(String id, IModel<String> model){
 		super(id, model);
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		queryAjaxBehavior = new AbstractDefaultAjaxBehavior(){
 			@Override
 			protected void respond(AjaxRequestTarget target){
-				Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("query").toString()).ifPresent(s->{
-					getComponent().getRequestCycle().replaceAllRequestHandlers(new TextRequestHandler("application/json", "UTF-8", gson.toJson(getChoices(s)) ));
+				IRequestParameters p = getRequestCycle().getRequest().getQueryParameters();
+				Optional.ofNullable(p.getParameterValue("query").toString()).ifPresent(s->{
+					choicelist = getChoices(s.trim());
+					getComponent().getRequestCycle().replaceAllRequestHandlers(new TextRequestHandler("application/json", "UTF-8", gson.toJson(choicelist)));
 				});
-				Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("selected").toString()).ifPresent(s->{
-					onSelect(target, Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("id").toString()).orElse("")
-								, Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("display").toString()).orElse(""));
+				Optional.ofNullable(p.getParameterValue("selected").toString()).ifPresent(s->{
+					String id = p.getParameterValue("id").toString();
+					for(Typeahead t:choicelist){
+						if (t.id.equals(id)){
+							onSelect(target, t);
+							break;
+						}
+					}
 				});
-				Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("change").toString()).ifPresent(s->{
-					onChange(target, Optional.ofNullable(getRequestCycle().getRequest().getQueryParameters().getParameterValue("display").toString()).orElse(""));
+				Optional.ofNullable(p.getParameterValue("change").toString()).ifPresent(s->{
+					String display = Optional.ofNullable(p.getParameterValue("display").toString()).orElse("").trim();
+					onChange(target, display);
 				});
 				getRequestCycle().getResponse().close();
 			}
 			@Override
-		    protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
-		        super.updateAjaxAttributes(attributes);
-		        attributes.setDataType("json");
-		        attributes.setWicketAjaxResponse(false);
-		    }
+			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+				super.updateAjaxAttributes(attributes);
+				attributes.setDataType("json");
+				attributes.setWicketAjaxResponse(false);
+			}
 		};
 		add(queryAjaxBehavior);
 	}
@@ -50,10 +60,10 @@ public abstract class AjaxTypeahead<T extends Typeahead> extends TextField<T>{
 	@Override
 	protected void onAfterRender(){
 		super.onAfterRender();
-
 		getResponse().write("<script type=\"text/javascript\">");
 		getResponse().write(" $(\"#" + this.getMarkupId(true) + "\").typeahead({highlight:true,minLength:1},{");
 		getResponse().write("displayKey: 'display',");
+		getResponse().write("limit: 7,");
 		getResponse().write("source : new Bloodhound({");
 		getResponse().write("datumTokenizer: function(datum){");
 		getResponse().write("return Bloodhound.tokenizers.whitespace(datum.display);");
@@ -77,7 +87,7 @@ public abstract class AjaxTypeahead<T extends Typeahead> extends TextField<T>{
 	}
 
 	/** 入力文字→候補リスト  */
-	protected abstract List<T> getChoices(String input);
+	protected abstract List<Typeahead> getChoices(String input);
 
 	/**
 	 * 選択イベント捕捉.
@@ -85,10 +95,9 @@ public abstract class AjaxTypeahead<T extends Typeahead> extends TextField<T>{
 	 * @param id
 	 * @param dislay
 	 */
-	protected void onSelect(AjaxRequestTarget target, String id, String dislay){
+	protected void onSelect(AjaxRequestTarget target, Typeahead typeahead){
 	}
 	/** 変更イベント捕捉	 */
 	protected void onChange(AjaxRequestTarget target, String dislay){
 	}
-
 }
