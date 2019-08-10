@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeHandlers>
+       <package name="jp.co.worldamenity.karas.mybatis.types"/>
+   </typeHandlers>
+   <environments default="deployment">
+      <environment id="deployment">
+         <transactionManager type="JDBC" />
+         <dataSource type="POOLED">
+            <property name="driver" value="org.postgresql.Driver" />
+            <property name="url" value="jdbc:postgresql://localhost:5432/testdb" />
+            <property name="username" value="postgres" />
+            <property name="password" value="aaaa" />
+            <property name="defaultAutoCommit" value="false" />
+            <property name="poolPingQuery" value="SELECT 1" />
+            <property name="poolPingEnabled" value="true" />
+            <property name="poolMaximumActiveConnections" value="10"/>
+            <property name="poolMaximumIdleConnections"   value="10" />
+            <property name="poolTimeToWait" value="60000" />
+         </dataSource>
+      </environment>
+   </environments>
+   <mappers>
+      <mapper resource="sqlmap.xml"/>
+   </mappers>
+</configuration>
+----------------------------------------------------------------
+<property name="driver" value="com.mysql.jdbc.Driver" />
+<property name="url" value="jdbc:mysql://localhost:3306/testdb" />
+----------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grp.midori.minc.logic.SimpleMapper">
+
+</mapper>
+----------------------------------------------------------------
+
+
