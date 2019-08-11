@@ -38,5 +38,102 @@ pom.xml  Main build
 
 ----------------------------------------------------------------------------------------
 
+   <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.1.8</version>
+   </dependency>
+   <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.8</version>
+   </dependency>
+
+   <!-- ============== for barcode ====================== -->
+   <dependency>
+      <groupId>net.sourceforge.barbecue</groupId>
+      <artifactId>barbecue</artifactId>
+      <version>1.5-beta1</version>
+   </dependency>
+   <dependency>
+      <groupId>net.sf.barcode4j</groupId>
+      <artifactId>barcode4j</artifactId>
+      <version>2.1</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-bridge</artifactId>
+      <version>1.9.1</version>
+   </dependency>
+
+   <!-- ====== Xstream ======== -->
+   <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.10</version>
+   </dependency>
+   <!-- ====== for Thumbnailator -->
+   <dependency>
+      <groupId>net.coobird</groupId>
+      <artifactId>thumbnailator</artifactId>
+      <version>0.4.8</version>
+   </dependency>
+
+   <!-- ========= Apache POI =========== -->
+   <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>4.0.1</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>4.0.1</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>4.0.1</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.directory.studio</groupId>
+      <artifactId>org.dom4j.dom4j</artifactId>
+      <version>1.6.1</version>
+   </dependency>
+   <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
+      <version>3.1.0</version>
+   </dependency>
+   <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+   </dependency>
+
+   <!-- ======== foe jsonpath ======== -->
+   <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>2.4.0</version>
+   </dependency>
+
+   <!-- QRコード　リーダー  -->
+   <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>core</artifactId>
+      <version>${zxing.version}</version>
+   </dependency>
+   <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>javase</artifactId>
+      <version>${zxing.version}</version>
+   </dependency>
+   <!-- ========== for jasperreports : PDF ========== -->
+   <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>6.6.0</version>
+   </dependency>
 
 
