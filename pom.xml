@@ -4,8 +4,8 @@
 <artifactId>yipuran-sandbox</artifactId>
 <version>1.03</version>
 
-<name>yipuran-compress</name>
-<url>https://github.com/yipuran/yipuran-compress</url>
+<name>yipuran-sandbox</name>
+<url>https://github.com/yipuran/sandbox</url>
 
 
 <properties>
@@ -40,11 +40,6 @@
 </distributionManagement>
 
 <dependencies>
-	<dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-compress</artifactId>
-		<version>1.19</version>
-	</dependency>
 	<dependency>
 		<groupId>org.yipuran.core</groupId>
 		<artifactId>yipuran-core</artifactId>
@@ -91,7 +86,7 @@
 				<branch>refs/heads/mvn-repo</branch>
 				<includes><include>**/*</include></includes>
 				<!-- Github リポジトリ名 -->
-				<repositoryName>yipuran-compress</repositoryName>
+				<repositoryName>sandbox</repositoryName>
 				<!-- Github リポジトリユーザー名 -->
 				<repositoryOwner>yipuran</repositoryOwner>
 			</configuration>
