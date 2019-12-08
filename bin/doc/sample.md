@@ -1,7 +1,0 @@
-# sample
-
-## doc sample
-
-   sample
-
-
