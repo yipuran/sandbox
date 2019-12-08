@@ -6,7 +6,7 @@
 .gradle
 .classpath
 .project
-.settings
+.settings/
 *.iml
 .idea/
 
