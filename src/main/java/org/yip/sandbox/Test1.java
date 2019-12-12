@@ -7,4 +7,6 @@ public class Test1{
 	public String name;
 	public int value;
 	public String info;
+	public int size;
+	public int length;
 }
