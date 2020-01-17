@@ -8,5 +8,5 @@ public class Test1{
 	public int value;
 	public String info;
 	public int size2;
-	public int length;
+	public int length2;
 }
