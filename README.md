@@ -1,7 +1,9 @@
 # sandbox
 
 ## Description
-  git begin **test**
+  git begin **test** AND trash source
+
+### ゴミ。ガラクタ。
 
     test
 
