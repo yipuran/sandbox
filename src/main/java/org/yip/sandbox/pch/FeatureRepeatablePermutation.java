@@ -3,7 +3,6 @@ package org.yip.sandbox.pch;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -185,7 +184,7 @@ AtomicLong counter;
 	private void calcAry(int i, int j){
 		p[i] = j;
 		if (i == r - 1){
-			T[] tt = (T[])nullArrays(r, list.get(0).getClass());
+			T[] tt = (T[])Array.newInstance(list.get(0).getClass(), r);
 			int cn = 0;
 			for(int k=0; k < r; k++){
 				if (p[k] < c.length) {
@@ -208,15 +207,6 @@ AtomicLong counter;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T> T[] nullArrays(int n, Class<T> cls){
-		final T[] e = (T[]) Array.newInstance(cls, n);
-		List<T> l = new ArrayList<>(Collections.emptyList());
-		for (int i=0; i<n; i++) {
-			l.add(null);
-		}
-		return l.toArray(e);
-	}
 	private Predicate<T[]> predicateAry;
 	private Consumer<T[]> consumerAry;
 	public void anyMatchArray(int len, Predicate<T[]> predicate, Consumer<T[]> consumer){
@@ -232,7 +222,7 @@ AtomicLong counter;
 	private void calcAryX(int i, int j){
 		p[i] = j;
 		if (i == r - 1){
-			T[] tt = (T[])nullArrays(r, list.get(0).getClass());
+			T[] tt = (T[])Array.newInstance(list.get(0).getClass(), r);
 			int cn = 0;
 			for(int k=0; k < r; k++){
 				if (p[k] < c.length) {
@@ -270,7 +260,7 @@ AtomicLong counter;
 	private T[] calcAryY(int i, int j){
 		p[i] = j;
 		if (i == r - 1){
-			T[] tt = (T[])nullArrays(r, list.get(0).getClass());
+			T[] tt = (T[])Array.newInstance(list.get(0).getClass(), r);
 			int cn = 0;
 			for(int k=0; k < r; k++){
 				if (p[k] < c.length) {
