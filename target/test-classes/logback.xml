@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<Target>System.out</Target>
+	<encoder>
+<!--
+      <Pattern>%-23d{yyyy/MM/dd HH:mm:ss.SSS} %-5p [%thread] %m\t\t\t[%class.%method:%line]%n</Pattern>
+ -->
+ 		<Pattern>%-23d{yyyy/MM/dd HH:mm:ss.SSS} %-5p [%thread] %m\t\t\t[%C{0}.%method:%line]%n</Pattern>
+	</encoder>
+</appender>
+
+<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<File>/var/log/wsys/ogwchart.log</File>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<FileNamePattern>/var/log/sandbox.%d{yyyy-MM-dd}.log</FileNamePattern>
+		<maxHistory>12</maxHistory>
+	</rollingPolicy>
+	<encoder>
+		<charset>UTF-8</charset>
+		<Pattern>%-23d{yyyy/MM/dd HH:mm:ss.SSS} %-5p [%thread] %m\t\t\t[%C{0}.%method]%n</Pattern>
+	</encoder>
+</appender>
+
+<logger name="org.yip.sandbox">
+	<level value="debug" />
+	<appender-ref ref="STDOUT" />
+</logger>
+
+<!-- for mybatis SQL statement Log -
+ <logger name="org.yip.sandbox.Sqlmapper">
+   <level value="warn" />
+   <appender-ref ref="FILE" />
+</logger>
+ -->
+</configuration>
