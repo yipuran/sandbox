@@ -7,8 +7,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
- * FeatureRepeatablePermutationTest
- */
+* FeatureRepeatablePermutationTest
+*/
 public class FeatureRepeatablePermutationTest{
 
 	@Test
