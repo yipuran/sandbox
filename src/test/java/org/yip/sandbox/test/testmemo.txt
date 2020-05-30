@@ -1,0 +1,91 @@
+
+
+
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.ibatis.datasource.DataSourceFactory;
+import org.apache.ibatis.datasource.pooled.PooledDataSource;
+import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
+/**
+ * MyDataSourceFactory
+ */
+public class MyDataSourceFactory implements DataSourceFactory {
+
+//   Properties prop;
+
+   @Override
+   public DataSource getDataSource() {
+       PooledDataSource dsp = new PooledDataSource();
+       UnpooledDataSource ds = new UnpooledDataSource();
+
+       ds.setDriver("com.mysql.jdbc.Driver");
+       ds.setUrl("jdbc:mysql://127.0.0.1:3308/test");
+       ds.setUsername("uranus");
+       ds.setPassword("aaaaa");
+       ds.setAutoCommit(false);
+       /*
+       ds.setDefaultAutoCommit(false);
+       ds.setPoolPingQuery("SELECT 1 FROM DUAL");
+       ds.setPoolMaximumIdleConnections(4);
+       ds.setPoolMaximumActiveConnections(4);
+       ds.setPoolPingEnabled(true);
+       ds.setPoolTimeToWait(90000);
+         */
+
+       return ds;
+   }
+
+   @Override
+   public void setProperties(Properties prprts){
+//       prop = prprts;
+   }
+}
+
+
+
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.labo.data.Alpha;
+import org.labo.logic.OtherMapper;
+import org.labo.logic.SimpleMapper;
+
+/**
+ * LaboDBMain2
+ */
+public class LaboDBMain2{
+   public static void main(String[] args){
+
+
+      MyDataSourceFactory dsfactory = new MyDataSourceFactory();
+
+      DataSource dataSource = dsfactory.getDataSource();
+      Environment environment = new Environment("development", new JdbcTransactionFactory(), dataSource);
+      Configuration c = new Configuration(environment);
+      c.addMapper(OtherMapper.class);
+      c.addMapper(SimpleMapper.class);
+      SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(c);
+
+      try(SqlSession session = factory.openSession()){
+         List<Alpha> list =  session.getMapper(SimpleMapper.class).getAlphas(30);
+         System.out.println("list = "+ list.size());
+
+         list =  session.selectList(OtherMapper.class.getName() + ".getAlphaList", 20);
+
+         System.out.println("list = "+ list.size());
+      }catch(Exception ex){
+         // TODO: handle exception
+         ex.printStackTrace();
+      }
+
+   }
+}
