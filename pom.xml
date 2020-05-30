@@ -22,7 +22,11 @@
 		<id>yipuran-core</id>
 		<url>https://raw.github.com/yipuran/yipuran-core/mvn-repo</url>
 	</repository>
-	 <repository>
+	<repository>
+        <id>yipuran-csv</id>
+        <url>https://raw.github.com/yipuran/yipuran-csv/mvn-repo</url>
+   </repository>
+	<repository>
       <id>yipuran-mybatis</id>
       <url>https://raw.github.com/yipuran/yipuran-mybatis/mvn-repo</url>
    </repository>
@@ -44,8 +48,13 @@
 	<dependency>
 		<groupId>org.yipuran.core</groupId>
 		<artifactId>yipuran-core</artifactId>
-		<version>4.17</version>
+		<version>4.19</version>
 	</dependency>
+	<dependency>
+        <groupId>org.yipuran.csv</groupId>
+        <artifactId>yipuran-csv</artifactId>
+        <version>1.0</version>
+    </dependency>
 	<dependency>
         <groupId>org.yipuran.mybatis</groupId>
         <artifactId>yipuran-mybatis</artifactId>
