@@ -7,16 +7,16 @@
    "ary" : [ 1, 12, 37 ],
    "group": [
       {
-         "item": "Red",
-         "len" : 192
+         "name": "Red",
+         "length" : 192
       },
       {
-         "item": "Yellow",
-         "len" : 26
+         "name": "Yellow",
+         "length" : 26
       },
       {
-         "item": "Green",
-         "len" : 34
+         "name": "Green",
+         "length" : 34
       }
    ]
 }
