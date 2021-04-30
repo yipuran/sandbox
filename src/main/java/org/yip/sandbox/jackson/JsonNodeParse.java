@@ -154,4 +154,13 @@ public class JsonNodeParse{
 			}
 		}
 	}
+	public static Function<JsonNode, Object> toFunction(Class<?> cls){
+		return t->{
+			try{
+				return new ObjectMapper().readerFor(cls).readValue(t);
+			}catch(Throwable ex){
+				throw new RuntimeException(ex);
+			}
+		};
+	}
 }
