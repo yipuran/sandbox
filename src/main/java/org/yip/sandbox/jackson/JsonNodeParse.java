@@ -51,6 +51,10 @@ public class JsonNodeParse{
 		}
 	}
 
+	public void readJson(JsonNode node, BiConsumer<String, Object> con){
+		parseJson(node, "", con);
+	}
+
 	private void parseJson(JsonNode node, String path, BiConsumer<String, Object> con){
 		String p = path.length() > 0 ? path.substring(1) : path;
 		Function<JsonNode, Object> nodeparser;
@@ -112,6 +116,12 @@ public class JsonNodeParse{
 		}catch(IOException e){
 			throw new RuntimeException(e);
 		}
+		return  builder.build();
+	}
+
+	public Stream<Entry<String, Object>> jsonStream(JsonNode node){
+		Stream.Builder<Entry<String, Object>> builder = Stream.builder();
+		parseJson(node, "", builder);
 		return  builder.build();
 	}
 
