@@ -48,7 +48,7 @@
 	<dependency>
 		<groupId>org.yipuran.core</groupId>
 		<artifactId>yipuran-core</artifactId>
-		<version>4.27</version>
+		<version>4.30</version>
 	</dependency>
 	<dependency>
         <groupId>org.yipuran.csv</groupId>
@@ -58,7 +58,7 @@
 	<dependency>
         <groupId>org.yipuran.mybatis</groupId>
         <artifactId>yipuran-mybatis</artifactId>
-        <version>4.3</version>
+        <version>4.6</version>
     </dependency>
     <dependency>
         <groupId>org.yipuran.wicketcustom</groupId>
