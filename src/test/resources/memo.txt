@@ -1,0 +1,35 @@
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
+import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
+import org.dbtest.base.BaseDao;
+import org.dbtest.mapper.SimpleDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.yipuran.util.Fieldgetter;
+
+/**
+ * SampleFoo
+ */
+public class SampleFoo{
+   @Inject private SimpleDao dao;
+   Logger logger = LoggerFactory.getLogger(DbTestMain4.class);
+
+   public void foo() {
+
+      DataSource ds = ((BaseDao)dao).getSqlSession().getConfiguration().getEnvironment().getDataSource();
+      UnpooledDataSource uds = (UnpooledDataSource)Fieldgetter.of(t->"dataSource").apply(ds);
+
+      String url = (String)Fieldgetter.of(t->"url").apply(uds);
+      String username = (String)Fieldgetter.of(t->"username").apply(uds);
+      String passwd = (String)Fieldgetter.of(t->"password").apply(uds);
+
+      logger.debug("■ url      = "+url);
+      logger.debug("■ username = "+username);
+      logger.debug("■ passwd   = "+passwd);
+
+
+
+   }
+}
+
