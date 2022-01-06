@@ -1,0 +1,31 @@
+
+for Postgresql
+getSqlSession().getConnection().createStatement().execute("TRUNCATE TABLE tbl_a restart IDENTITY CASCADE");
+
+for other
+getSqlSession().getConnection().createStatement().execute("TRUNCATE TABLE tbl_a");
+
+
+
+
+
+<insert id="genericInsert" parameterType="map">
+INSERT INTO ${tablename}
+   <foreach collection="columns" item="c" open="(" close=")" separator=",">${c}</foreach>
+VALUES
+   <foreach collection="values" item="v" open="(" close=")" separator=",">${v}</foreach>
+</insert>
+
+Map<String, Object> pmap = new HashMap<>();
+List<String> clist = new ArrayList<>();
+List<String> vlist = new ArrayList<>();
+pmap.put("tablename", "sample");
+clist.add("name");
+clist.add("point");
+pmap.put("columns", clist);
+vlist.add("'E'");
+vlist.add("120");
+pmap.put("values", vlist);
+
+int count = getSqlSession().insert(bindId(SimpleMapper.class, "genericInsert"), pmap);
+
