@@ -1,0 +1,16 @@
+
+PushbackInputStream
+
+    public static Workbook create(InputStream inp) throws IOException, InvalidFormatException {
+        if (!((InputStream)inp).markSupported()) {
+            inp = new PushbackInputStream((InputStream)inp, 8);
+        }
+
+        if (POIFSFileSystem.hasPOIFSHeader((InputStream)inp)) {
+            return new HSSFWorkbook((InputStream)inp);
+        } else if (POIXMLDocument.hasOOXMLHeader((InputStream)inp)) {
+            return new XSSFWorkbook(OPCPackage.open((InputStream)inp));
+        } else {
+            throw new IllegalArgumentException("Your InputStream was neither an OLE2 stream, nor an OOXML stream");
+        }
+    }
